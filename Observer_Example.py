@@ -71,7 +71,7 @@ class WeatherStation(Subject):
         for observer in self._observers:
             observer.update(self)
 
-    def some_business_logic(self) -> None:
+    def calculating_weather(self) -> None:
         """
         Usually, the subscription logic is only a fraction of what a Subject can
         really do. Subjects commonly hold some important business logic, that
@@ -119,11 +119,11 @@ class Tonin(Observer):
             print("Tonin: Fuck")
 
 
-class ConcreteObserverB(Observer):
-    background_story = '''Im driving so I want to know if it's dangerous'''
+class Andreea(Observer):
+    background_story = '''Do I ever want to go out of the house ever again?'''
     def update(self, Subject: Subject) -> None:
         if Subject._state == 'icy' or Subject._state == 'snow':
-            print("ConcreteObserverB: Reacted to the event")
+            print("Andreea: Hell nnaaawwwwwww")
 
 
 if __name__ == "__main__":
@@ -131,15 +131,15 @@ if __name__ == "__main__":
 
     Subject = WeatherStation()
 
-    observer_a = Tonin()
-    Subject.attach(observer_a)
+    tonin = Tonin()
+    Subject.attach(tonin)
 
-    observer_b = ConcreteObserverB()
-    Subject.attach(observer_b)
+    andreea = Andreea()
+    Subject.attach(andreea)
 
-    Subject.some_business_logic()
-    Subject.some_business_logic()
+    Subject.calculating_weather()
+    Subject.calculating_weather()
 
-    Subject.detach(observer_a)
+    Subject.detach(tonin)
 
-    Subject.some_business_logic()
+    Subject.calculating_weather()
